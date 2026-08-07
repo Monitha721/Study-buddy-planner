@@ -35,7 +35,7 @@ androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref
 androidx-annotation = "androidx.annotation:annotation:1.10.0"
 androidx-appcompat = "androidx.appcompat:appcompat:1.7.1"
 androidx-browser = "androidx.browser:browser:1.10.0"
-androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.2.1"
+androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.2.2"
 androidx-core-ktx = "androidx.core:core-ktx:1.19.0"
 androidx-datastore-typed = { module = "androidx.datastore:datastore", version.ref = "androidx-datastore" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "androidx-fragment" }
