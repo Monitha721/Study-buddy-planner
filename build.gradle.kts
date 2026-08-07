@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+    }
+
+    dependencies {
+        // Declared here such that a custom reporter can be used
+        classpath(libs.gradleVersions.gradle)
+    }
+}
+
+plugins {
+    alias(libs.plugins.dependencyAnalysis)
+    io.github.`ben-manes`.versions
+    com.edricchan.studybuddy.`dependency-updates`
+    alias(libs.plugins.testAggregation.results)
+    alias(libs.plugins.aboutLibraries) apply false
+    com.edricchan.studybuddy.`properties-producer`
+}
+
+tasks {
+    register<Delete>("clean") {
+        description = "Deletes the root project's build directory"
+        delete(rootProject.layout.buildDirectory)
+    }
+}
+
+dependencyAnalysis {
+    // See https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin/wiki/Customizing-plugin-behavior#ktx-dependencies
+    issues {
+        structure {
+            ignoreKtx(true)
+        }
+    }
+}

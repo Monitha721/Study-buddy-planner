@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common auth strings -->
+    <eat-comment />
+
+    <!-- Label text for the email text field. -->
+    <string name="account_email_field_label">Email</string>
+    <!-- Error text when an invalid email address is entered into the email text field. -->
+    <string name="account_email_field_error_invalid_text">Please enter a valid email address.</string>
+    <!-- Label text for the password text field. -->
+    <string name="account_password_field_label">Password</string>
+
+    <!-- Error text to be shown for the password text-field when the minimum length criteria isn't met. -->
+    <string name="minimum_password">The password that you entered is too short, please enter a
+        minimum of 6 characters!
+    </string>
+
+    <!-- Action text to be shown for the toggle password button when in a shown state. -->
+    <string name="password_toggle_visibility_action_hide_text">Hide password</string>
+    <!-- Action text to be shown for the toggle password button when in a hidden state. -->
+    <string name="password_toggle_visibility_action_show_text">Show password</string>
+
+    <!-- State description to be used when the toggle password button is in a shown state. -->
+    <string name="password_toggle_visibility_state_desc_shown">Password is shown</string>
+    <!-- State description to be used when the toggle password button is in a hidden state. -->
+    <string name="password_toggle_visibility_state_desc_hidden">Password is hidden</string>
+</resources>

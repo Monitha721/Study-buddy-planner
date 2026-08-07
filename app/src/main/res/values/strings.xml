@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- FIXME: Restructure this file -->
+<resources>
+    <!-- About fragment strings -->
+    <eat-comment />
+
+    <string name="about_frag_app_info_card_version_title">Version</string>
+    <string name="about_frag_app_info_card_open_app_info_title">Open app info</string>
+    <string name="about_frag_app_info_card_open_app_info_subtitle">Open the app\'s info page in
+        Settings</string>
+    <string name="about_frag_app_info_card_view_source_code_title">View source code</string>
+    <string name="about_frag_app_info_card_view_source_code_subtitle">Opens the app\'s source code
+        in a new tab</string>
+    <string name="about_frag_app_info_card_open_source_licenses_title">Open-source licenses</string>
+    <string name="about_frag_about_author_card_title">Author</string>
+    <string name="about_frag_about_author_card_author_name_title">Edric Chan</string>
+    <string name="about_frag_about_author_card_view_author_website_title">Author\'s website</string>
+
+    <!-- The title of the about menu item in the main activity's menu. -->
+    <string name="menu_main_about_title">About</string>
+    <!-- The title of the account menu item in the main activity's menu. -->
+    <string name="menu_main_account_title">Account</string>
+    <!-- The title of the check for updates menu item in the update activity's menu. -->
+    <string name="menu_updates_check_for_updates_title">Check for updates</string>
+    <!-- The title of the debug menu item. -->
+    <string name="menu_debug_title">Debug</string>
+
+    <!-- The title of the help menu item. -->
+    <string name="menu_help_title">Help</string>
+
+    <!-- The title of the send feedback menu item in the help and settings activities' menus. -->
+    <string name="menu_send_feedback_title">Send Feedback</string>
+
+    <!-- The title of the settings menu item. -->
+    <string name="menu_settings_title">Settings</string>
+
+    <!-- The title of the share this app menu item in the main activity's menu. -->
+    <string name="menu_main_share_app_title">Share this app</string>
+
+    <string name="app_desc">Study Buddy is an app that aids students with their studies.</string>
+
+    <string name="app_name">Study Buddy</string>
+
+    <string name="bottom_nav_calendar">Calendar</string>
+    <string name="bottom_nav_todos">Tasks</string>
+
+    <string name="dialog_action_cancel">Cancel</string>
+    <string name="dialog_action_clear">Clear</string>
+    <string name="dialog_action_close">Close</string>
+    <string name="dialog_action_confirm">Confirm</string>
+    <string name="dialog_action_create">Create</string>
+    <string name="dialog_action_disable">Disable</string>
+    <string name="dialog_action_dismiss">Dismiss</string>
+    <string name="dialog_action_enable">Enable</string>
+    <string name="dialog_action_no">No</string>
+    <string name="dialog_action_ok">OK</string>
+    <string name="dialog_action_retry">Retry</string>
+    <string name="dialog_action_yes">Yes</string>
+    <string name="download_apk_name">com.edricchan.studybuddy-v%s.apk</string>
+
+    <string name="frag_calendar_coming_soon">Calendar feature coming soon!</string>
+
+    <string name="notification_check_update">Checking for updates…</string>
+    <string name="notification_new_update_text">Version %s is available! Tap here to download &amp;
+        install</string>
+
+    <string name="notification_new_update_title">New update available!</string>
+
+    <string name="notification_no_updates">No updates available</string>
+    <string name="notification_updates_error_unknown_text">An error occurred while checking for
+        updates. Try again later</string>
+    <string name="notification_updates_error_unknown_title">Update error</string>
+    <string name="notification_updates_error_no_internet_text">You are not connected to the
+        internet. Check your network connection before retrying.
+    </string>
+
+    <string name="notification_updates_error_no_internet_title">No internet connection</string>
+
+    <string name="notification_updates_error_not_found_text">The file specified does not exist.
+        Please check that you have enabled the Storage permission.
+    </string>
+    <string name="notification_updates_error_not_found_title">File not found</string>
+
+    <string name="share_content">Check out yet another open-source app by @EdricChan03! Source code
+        available at https://github.com/EdricChan03/StudyBuddy
+    </string>
+    <string name="share_intent_value">Share this app via&#8230;</string>
+
+    <string name="shortcut_todo_disabled_msg">Todo is disabled</string>
+    <string name="shortcut_todo_long_msg">Create a new todo</string>
+    <string name="shortcut_todo_short_msg">New todo</string>
+
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_account">Account</string>
+    <string name="title_activity_debug">Debug</string>
+    <string name="title_activity_debug_modal_bottom_sheet">Modal Bottom Sheet Debug</string>
+    <string name="title_activity_help">Help</string>
+    <string name="title_activity_licenses">Open-source Licenses</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_updates">Updates</string>
+</resources>

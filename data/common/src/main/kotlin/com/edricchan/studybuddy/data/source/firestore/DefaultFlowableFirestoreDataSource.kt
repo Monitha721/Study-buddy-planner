@@ -1,0 +1,24 @@
+package com.edricchan.studybuddy.data.source.firestore
+
+import com.edricchan.studybuddy.data.common.DtoModel
+import com.edricchan.studybuddy.data.common.HasId
+import com.edricchan.studybuddy.data.source.firestore.FirestoreDataSource.FirestoreCrudBatch
+import com.google.firebase.firestore.CollectionReference
+import kotlinx.coroutines.flow.Flow
+import kotlin.reflect.KClass
+
+/**
+ * Variant of [FlowableFirestoreDataSource] with a default `Batch` being used.
+ * @see FlowableFirestoreDataSource
+ */
+open class DefaultFlowableFirestoreDataSource<T, CreateDto : Any>(
+    collectionRefFlow: Flow<CollectionReference>,
+    klass: KClass<T>
+) : FlowableFirestoreDataSource<T, CreateDto, FirestoreCrudBatch<T>>(
+    collectionRefFlow = collectionRefFlow,
+    klass = klass,
+    batchFactory = {
+        FirestoreCrudBatch(collectionRef = it)
+    }
+), IDefaultFirestoreDataSource<T, CreateDto>
+    where T : HasId, T : DtoModel

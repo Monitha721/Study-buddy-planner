@@ -1,0 +1,68 @@
+package com.edricchan.studybuddy.ui.widgets.compose
+
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewWrapper
+import com.edricchan.studybuddy.core.resources.icons.AppIcons
+import com.edricchan.studybuddy.core.resources.icons.outlined.ArrowBack
+import com.edricchan.studybuddy.ui.theming.compose.theme.preview.StudyBuddyThemeWrapperProvider
+
+/**
+ * An icon button with a back icon Composable that has a tooltip.
+ * @param modifier Modifier to be passed to the [IconButton]
+ * @param tooltipModifier Modifier to be passed to the
+ * [androidx.compose.material3.TooltipBox] tooltip
+ * @param tooltipTextModifier Modifier to be passed to the [Text] composable
+ * representing the tooltip text
+ * @param enabled Whether the icon button is enabled
+ * @param onClick Function that is invoked when the icon button is clicked
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BackIconButton(
+    modifier: Modifier = Modifier,
+    tooltipModifier: Modifier = Modifier,
+    tooltipTextModifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) = IconButtonWithTooltip(
+    modifier = modifier,
+    tooltipModifier = tooltipModifier,
+    tooltip = {
+        PlainTooltip {
+            Text(
+                modifier = tooltipTextModifier,
+                text = stringResource(R.string.back_btn_tooltip_text)
+            )
+        }
+    },
+    icon = {
+        Icon(
+            AppIcons.Outlined.ArrowBack,
+            contentDescription = stringResource(R.string.back_btn_tooltip_text)
+        )
+    },
+    enabled = enabled,
+    onClick = onClick
+)
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview(showBackground = true)
+@PreviewWrapper(StudyBuddyThemeWrapperProvider::class)
+@Composable
+private fun BackIconButtonPreview() {
+    TopAppBar(
+        title = { Text(text = "My screen") },
+        navigationIcon = {
+            BackIconButton(onClick = {})
+        }
+    )
+}

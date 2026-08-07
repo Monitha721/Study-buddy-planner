@@ -1,0 +1,54 @@
+package com.edricchan.studybuddy.ui.widgets.compose
+
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.TooltipAnchorPosition
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.TooltipScope
+import androidx.compose.material3.TooltipState
+import androidx.compose.material3.rememberTooltipState
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.window.PopupPositionProvider
+
+/**
+ * An icon button Composable that has a tooltip.
+ * @param modifier Modifier to be passed to the [IconButton]
+ * @param tooltipModifier Modifier to be passed to the [TooltipBox] tooltip
+ * @param onClick Function that is invoked when the icon button is clicked
+ * @param enabled Whether the icon button is enabled
+ * @param tooltip Composable to be used for the tooltip's content. The tooltip should be
+ * enclosed in a [androidx.compose.material3.PlainTooltip] or
+ * [androidx.compose.material3.RichTooltip].
+ * @param icon Composable to be used for the icon button's icon
+ */
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+fun IconButtonWithTooltip(
+    modifier: Modifier = Modifier,
+    tooltipModifier: Modifier = Modifier,
+    positionProvider: PopupPositionProvider = TooltipDefaults.rememberTooltipPositionProvider(
+        positioning = TooltipAnchorPosition.Below
+    ),
+    state: TooltipState = rememberTooltipState(),
+    onClick: () -> Unit,
+    enabled: Boolean = true,
+    tooltip: @Composable TooltipScope.() -> Unit,
+    icon: @Composable () -> Unit
+) = TooltipBox(
+    modifier = tooltipModifier,
+    tooltip = tooltip,
+    state = state,
+    positionProvider = positionProvider
+) {
+    IconButton(
+        modifier = modifier,
+        shapes = IconButtonDefaults.shapes(),
+        onClick = onClick,
+        enabled = enabled,
+        content = icon
+    )
+}

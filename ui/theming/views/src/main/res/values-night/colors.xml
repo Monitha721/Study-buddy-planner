@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="md_theme_primary">#36FED0</color>
+    <color name="md_theme_onPrimary">#005D4A</color>
+    <color name="md_theme_primaryContainer">#0CF0C2</color>
+    <color name="md_theme_onPrimaryContainer">#005442</color>
+    <color name="md_theme_inversePrimary">#006C56</color>
+
+    <color name="md_theme_secondary">#DDC2A1</color>
+    <color name="md_theme_onSecondary">#4F3D24</color>
+    <color name="md_theme_secondaryContainer">#32230D</color>
+    <color name="md_theme_onSecondaryContainer">#B9A081</color>
+
+    <color name="md_theme_tertiary">#FFC075</color>
+    <color name="md_theme_onTertiary">#623B00</color>
+    <color name="md_theme_tertiaryContainer">#FCAE49</color>
+    <color name="md_theme_onTertiaryContainer">#553300</color>
+
+    <color name="md_theme_error">#FF716C</color>
+    <color name="md_theme_onError">#490006</color>
+    <color name="md_theme_errorContainer">#8A1A1E</color>
+    <color name="md_theme_onErrorContainer">#FF9993</color>
+
+    <color name="md_theme_background">#00110E</color>
+    <color name="md_theme_onBackground">#C3EEE5</color>
+    <color name="md_theme_surface">#00110E</color>
+    <color name="md_theme_onSurface">#C3EEE5</color>
+    <color name="md_theme_surfaceVariant">#002C26</color>
+    <color name="md_theme_onSurfaceVariant">#729B93</color>
+
+    <color name="md_theme_inverseSurface">#E7FEF8</color>
+    <color name="md_theme_inverseOnSurface">#445955</color>
+
+    <color name="md_theme_surfaceDim">#00110E</color>
+    <color name="md_theme_surfaceBright">#00332D</color>
+    <color name="md_theme_surfaceContainerLowest">#000000</color>
+    <color name="md_theme_surfaceContainerLow">#001714</color>
+    <color name="md_theme_surfaceContainer">#001E1A</color>
+    <color name="md_theme_surfaceContainerHigh">#002520</color>
+    <color name="md_theme_surfaceContainerHighest">#002C26</color>
+
+    <color name="md_theme_outline">#547D76</color>
+    <color name="md_theme_outlineVariant">#264F48</color>
+    <color name="md_theme_scrim">#000000</color>
+
+</resources>

@@ -1,0 +1,117 @@
+plugins {
+    com.edricchan.studybuddy.library.`android-compose`
+    com.edricchan.studybuddy.library.`android-hilt`
+}
+
+android {
+    namespace = "com.edricchan.studybuddy.features.tasks"
+
+    defaultConfig {
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    buildFeatures.viewBinding = true
+
+    compileOptions.isCoreLibraryDesugaringEnabled = true
+}
+
+dependencies {
+    implementation(projects.core.compat.navigation)
+    implementation(projects.features.auth.navigation)
+
+    api(projects.features.tasks.data)
+    api(projects.features.tasks.domain)
+    api(projects.features.tasks.navigation)
+
+    api(projects.core.settings.tasks.model)
+    implementation(projects.core.resources)
+    implementation(projects.core.resources.icons)
+    implementation(projects.core.resources.temporal)
+    implementation(projects.data.common)
+    implementation(projects.data.common.compose)
+    implementation(projects.data.forms.compose)
+    implementation(projects.exts.android)
+    implementation(projects.exts.androidx.preferenceFiles)
+    implementation(projects.exts.common)
+    implementation(projects.exts.datetime)
+    implementation(projects.exts.firebase.core)
+    implementation(projects.exts.firebase.temporal)
+    implementation(projects.exts.material)
+    implementation(projects.exts.material.datePicker)
+    implementation(projects.utils.androidx.compose)
+    implementation(projects.utils.androidx.core)
+    implementation(projects.utils.devMode)
+    implementation(projects.utils.recyclerview)
+    implementation(projects.ui.common)
+    implementation(projects.ui.theming.compose)
+    implementation(projects.ui.widgets.compose)
+    implementation(projects.ui.widgets.compose.markdownViewer)
+    implementation(projects.ui.widgets.views.markdownViewer)
+    implementation(projects.ui.widgets.compose.segmentedList)
+
+    // TODO: Remove when TaskListFragment has migrated to Compose
+    implementation(projects.ui.widgets.modalBottomSheet) {
+        because("TaskListFragment uses the modal bottom-sheet UI")
+    }
+    implementation(projects.ui.theming.views) {
+        because("setDynamicColors extension function for TaskListFragment")
+    }
+    implementation(libs.androidx.swiperefreshlayout) {
+        because("TaskListFragment uses SwipeRefreshLayout")
+    }
+
+    // AndroidX
+    api(libs.androidx.paging.compose)
+    api(libs.androidx.paging.runtime)
+    api(libs.androidx.recyclerview.core)
+    api(libs.androidx.recyclerview.selection)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.materialComponents)
+
+    // Jetpack Navigation
+    api(libs.androidx.navigation.common.ktx)
+    api(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.fragment.ktx)
+
+    // Compose
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.bundles.androidx.compose)
+
+    implementation(libs.composeShimmer)
+
+    // Compose Tooling
+    debugImplementation(libs.bundles.androidx.compose.tooling)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.auth.ktx)
+
+    // Kotlin Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Dagger
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
+
+    // Migration
+    implementation(libs.migration)
+
+    coreLibraryDesugaring(libs.android.desugar.nio)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+}

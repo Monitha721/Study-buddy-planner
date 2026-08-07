@@ -1,0 +1,47 @@
+name: App build
+
+on:
+  push:
+    # Allow running these checks only on the developing branches
+    branches:
+      - main
+      - develop
+      - releases/*
+
+permissions:
+  # For writing to the GitHub Dependency Graph API
+  contents: write
+  # For generating attestations
+  id-token: write
+  attestations: write
+  artifact-metadata: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        app-build-types: [ debug, nightly, release ]
+
+    name: Build app (${{ matrix.app-build-types }})
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Capitalise build type
+        id: capitalise-build-type
+        # See https://linuxhint.com/bash_lowercase_uppercase_strings/
+        run: |
+          build_type="${{ matrix.app-build-types }}"
+          echo "build-type=${build_type^}" >> $GITHUB_OUTPUT
+      - name: Build app
+        uses: ./.github/actions/build-gradle
+        with:
+          gradle-arguments: :app:assemble${{ steps.capitalise-build-type.outputs.build-type }}
+          upload-name: app-${{ matrix.app-build-types }}.apk
+          upload-path: app/build/outputs/apk/${{ matrix.app-build-types }}/app-${{ matrix.app-build-types }}.apk
+          transcrypt-cipher: ${{ secrets.TRANSCRYPT_CIPHER }}
+          transcrypt-password: ${{ secrets.TRANSCRYPT_PASSWORD }}
+          app-keystore-password: ${{ secrets.APP_KEYSTORE_PASSWORD }}
+          app-keystore-alias: ${{ secrets.APP_KEYSTORE_ALIAS }}
+          app-keystore-alias-password: ${{ secrets.APP_KEYSTORE_ALIAS_PASSWORD }}

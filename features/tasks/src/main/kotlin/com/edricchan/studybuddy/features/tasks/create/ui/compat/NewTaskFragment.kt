@@ -1,0 +1,164 @@
+package com.edricchan.studybuddy.features.tasks.create.ui.compat
+
+import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.viewModels
+import com.edricchan.studybuddy.exts.android.showToast
+import com.edricchan.studybuddy.exts.datetime.format
+import com.edricchan.studybuddy.exts.datetime.toLocalDateTime
+import com.edricchan.studybuddy.exts.material.picker.setCalendarConstraints
+import com.edricchan.studybuddy.exts.material.picker.setSelection
+import com.edricchan.studybuddy.exts.material.picker.showMaterialDatePicker
+import com.edricchan.studybuddy.exts.material.textfield.editTextStrValue
+import com.edricchan.studybuddy.features.auth.navigation.AuthDestination
+import com.edricchan.studybuddy.features.auth.navigation.navigateToLogin
+import com.edricchan.studybuddy.features.tasks.R
+import com.edricchan.studybuddy.features.tasks.create.vm.NewTaskViewModel
+import com.edricchan.studybuddy.features.tasks.databinding.FragNewTaskBinding
+import com.edricchan.studybuddy.features.tasks.domain.model.create.CreateTaskItemInput
+import com.edricchan.studybuddy.ui.common.SnackBarData
+import com.edricchan.studybuddy.ui.common.fragment.ViewBindingFragment
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
+import java.time.Instant
+import javax.inject.Inject
+import com.edricchan.studybuddy.core.resources.R as CoreResR
+
+@AndroidEntryPoint
+class NewTaskFragment : ViewBindingFragment<FragNewTaskBinding>(FragNewTaskBinding::inflate) {
+    companion object {
+        private const val TAG = "NewTaskFragment"
+        const val ACTION_NEW_TASK_SHORTCUT = "com.edricchan.studybuddy.shortcuts.ACTION_NEW_TASK"
+    }
+
+    private val viewModel by viewModels<NewTaskViewModel>()
+
+    @Inject
+    lateinit var auth: FirebaseAuth
+
+    private var taskInstant: Instant? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (auth.currentUser == null) {
+            showToast("Please sign in before continuing", Toast.LENGTH_SHORT)
+            navController.navigateToLogin {
+                popUpTo<AuthDestination.Login>()
+            }
+            return
+        }
+
+        binding.apply {
+            // TODO: Migrate logic to separate component
+            taskDueDateChip.apply {
+                setOnClickListener {
+                    showMaterialDatePicker(
+                        "taskDueDatePicker",
+                        builderInit = {
+                            setCalendarConstraints(
+                                start = Instant.now(),
+                                validator = DateValidatorPointForward.now()
+                            )
+                            taskInstant?.let {
+                                // Set the initial selection
+                                setSelection(it)
+                            }
+                        },
+                        pickerInit = {
+                            addOnPositiveButtonClickListener { selection ->
+                                Instant.ofEpochMilli(selection).let {
+                                    taskInstant = it
+                                    // Produces <day name>, <month> <year>
+                                    // We need to convert it to a LocalDateTime as Instants don't support
+                                    // temporal units bigger than days - see the `Instant#isSupported` Javadocs
+                                    // for more info
+                                    text = it.toLocalDateTime()
+                                        .format(getString(CoreResR.string.java_time_format_pattern_default))
+                                }
+                                // Allow due date to be reset
+                                isCloseIconVisible = true
+                            }
+                        })
+                }
+                setOnCloseIconClickListener {
+                    // Reset due date
+                    taskInstant = null
+
+                    // Reset chip's state
+                    isCloseIconVisible = false
+                    setText(R.string.select_date_chip_default_text)
+                }
+            }
+        }
+    }
+
+    override val menuProvider = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.menu_new_item, menu)
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return when (menuItem.itemId) {
+                R.id.action_submit -> {
+                    binding.apply {
+                        if (taskTitleTextInputLayout.editTextStrValue.isBlank()) {
+                            taskTitleTextInputLayout.error = "Please enter something."
+                            showSnackBar(
+                                "Some errors occurred while attempting to submit the form.",
+                                SnackBarData.Duration.Long
+                            )
+                            return true
+                        }
+
+                        taskTitleTextInputLayout.isErrorEnabled = false
+                        val taskItem = CreateTaskItemInput(
+                            title = taskTitleTextInputLayout.editTextStrValue,
+                            description = taskContentTextInputLayout.editTextStrValue
+                                .takeIf { it.isNotBlank() },
+                            tags = taskTagsTextInputLayout.editTextStrValue
+                                .takeIf { it.isNotBlank() }
+                                ?.split(Regex("""\s*,\s*"""))
+                                ?.filter { it.isNotBlank() }
+                                ?.map { it.trim() }
+                                .orEmpty().toSet(),
+                            dueDate = taskInstant,
+                            isCompleted = taskIsDoneCheckbox.isChecked
+                        )
+                        viewModel.submitTask(
+                            item = taskItem,
+                            onSuccess = {
+                                showToast(
+                                    "Successfully added task!",
+                                    Toast.LENGTH_SHORT
+                                )
+                                navController.popBackStack()
+                            },
+                            onFailure = {
+                                Log.e(
+                                    TAG,
+                                    "An error occurred while adding the task:",
+                                    it
+                                )
+                                showToast(
+                                    "An error occurred while adding the task. Try again later.",
+                                    Toast.LENGTH_LONG
+                                )
+                            }
+                        )
+                    }
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+}

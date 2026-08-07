@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+This file houses resources that are still used for existing
+files. They should be moved to their respective files at some point :)
+
+TODO: Remove this file
+-->
+<resources>
+    <string name="task_content">Task Content</string>
+    <string name="task_tags">Task Tags</string>
+    <string name="task_title">Task Title</string>
+
+    <string name="markdown_supported_helpertext">Markdown is supported</string>
+
+    <string name="comma_indicates_separator">Separate each tag/label with a comma</string>
+
+    <string name="select_date_chip_default_text">Select a date&#8230;</string>
+
+    <string name="todo_frag_delete_task_dialog_msg">Note that the deletion process is
+        irreversible.</string>
+
+    <string name="todo_frag_delete_task_dialog_title">Delete task?</string>
+
+    <!-- Call-to-action text for the button to be shown when all tasks are done. -->
+    <string name="todo_frag_empty_state_cta">New task</string>
+    <!-- Title to be shown when all tasks are done. -->
+    <string name="todo_frag_empty_state_head">All tasks done!</string>
+
+    <string name="view_task_loading">Loading task\'s contents…</string>
+    <string name="view_task_label_icon_content_desc">Label icon</string>
+
+    <!-- Menu strings -->
+    <eat-comment />
+
+    <!-- The title of the archive task menu item in the view task activity's menu. -->
+    <string name="menu_view_task_archive_todo_title">Archive todo</string>
+    <!-- The title of the unarchive task menu item in the view task activity's menu. -->
+    <string name="menu_view_task_unarchive_todo_title">Unarchive todo</string>
+    <!-- The title of the delete task menu item in the view task activity's menu. -->
+    <string name="menu_view_task_delete_todo_title">Delete todo</string>
+    <!-- The title of the edit task menu item in the view task activity's menu. -->
+    <string name="menu_view_task_edit_title">Edit</string>
+
+    <!-- The title of the save menu item in the edit task activity's menu. -->
+    <string name="menu_edit_task_save_title">Save</string>
+
+    <string name="action_menu_overflow_title">More options</string>
+
+    <!-- The title of the refresh tasks menu item in the task fragment's menu. -->
+    <string name="menu_frag_task_refresh_todos_title">Refresh tasks</string>
+
+    <!-- New task strings -->
+    <eat-comment />
+
+    <!-- The title of the submit task menu item in the new task activity's menu. -->
+    <string name="menu_new_task_submit_title">Submit</string>
+</resources>

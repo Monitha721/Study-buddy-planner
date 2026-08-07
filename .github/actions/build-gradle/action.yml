@@ -1,0 +1,99 @@
+# Composite action for running Gradle tasks
+name: Build Gradle
+description: Composite action to setup Gradle and run a given Gradle task
+inputs:
+  gradle-cache-read-only:
+    description: "Whether to disallow writing Gradle cache."
+    default: "false"
+    required: false
+  gradle-arguments:
+    description: "Arguments to be passed to ./gradlew for building."
+    required: true
+  skip-upload:
+    description: "Whether to skip uploading."
+    default: "false"
+    required: false
+  upload-name:
+    description: "The name of the artifact to upload."
+    required: true
+  upload-path:
+    description: "The path to the artifact to upload."
+    required: true
+  upload-archive:
+    description: "Whether the file should be compressed into a zip file."
+    default: "true"
+  # Secrets
+  skip-signing:
+    description: "Whether to skip APK signing."
+    default: "false"
+  transcrypt-cipher:
+    description: "The cipher to use for Transcrypt."
+    required: true
+  transcrypt-password:
+    description: "The password to use for the encrypted Transcrypt files."
+    required: true
+  app-keystore-password:
+    description: "The keystore password to use."
+    required: true
+  app-keystore-alias:
+    description: "The alias to use for the keystore."
+    required: true
+  app-keystore-alias-password:
+    description: "The keystore alias password to use."
+    required: true
+  skip-attestation:
+    description: "Whether to skip attesting the built artifacts."
+    default: "false"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Java 17
+      uses: actions/setup-java@v5
+      with:
+        java-version: 17
+        distribution: temurin
+    # See https://github.com/actions/runner-images/issues/6283
+    - name: Set up Homebrew
+      uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c
+    - name: Install Homebrew dependencies
+      run: brew bundle
+      shell: bash
+    - name: Decrypt keystore
+      if: ${{ !(inputs.skip-signing == 'true') }}
+      run: |
+        source ~/.profile
+        echo "Current version of transcrypt:"
+        transcrypt -v
+        transcrypt -c ${{ inputs.transcrypt-cipher }} -p ${{ inputs.transcrypt-password }} -y
+      shell: bash
+      env:
+        SECRETS_GPG_COMMAND: gpg2
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v5
+      with:
+        cache-read-only: ${{ inputs.gradle-cache-read-only }}
+        gradle-home-cache-strict-match: true
+    - name: Setup Android problem matchers
+      uses: jonasb/android-problem-matchers-action@v1
+    - name: Build Android
+      run: |
+        source ~/.profile
+        ./gradlew ${{ inputs.gradle-arguments }}
+      shell: bash
+      env:
+        APP_KEYSTORE_PASSWORD: ${{ inputs.app-keystore-password }}
+        APP_KEYSTORE_ALIAS: ${{ inputs.app-keystore-alias }}
+        APP_KEYSTORE_ALIAS_PASSWORD: ${{ inputs.app-keystore-alias-password }}
+    - name: Attest artifacts
+      if: ${{ !(inputs.skip-attestation == 'true') }}
+      uses: actions/attest@v4
+      with:
+        subject-path: ${{ inputs.upload-path }}
+    - name: Upload artifacts
+      if: ${{ !(inputs.skip-upload == 'true') }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: ${{ inputs.upload-name }}
+        path: ${{ inputs.upload-path }}
+        archive: ${{ inputs.upload-archive }}
+        if-no-files-found: ignore

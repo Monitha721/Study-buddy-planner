@@ -1,0 +1,185 @@
+rootProject.name = "studybuddy-android"
+
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("""com\.android.*""")
+                includeGroupByRegex("""com\.google.*""")
+                // Newer versions of KSP are published on Maven Central
+                excludeGroup("com.google.devtools.ksp")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+}
+
+plugins {
+    id("com.gradle.develocity") version "4.4.1"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+
+    id("com.android.settings") version "9.3.1"
+}
+
+val isCi = !System.getenv("CI").isNullOrEmpty()
+val isGitHubActions = !System.getenv("GITHUB_ACTIONS").isNullOrEmpty()
+
+develocity.buildScan {
+    termsOfUseUrl = "https://gradle.com/terms-of-service"
+    termsOfUseAgree = "yes"
+
+    if (isCi) tag("CI")
+
+    // GitHub Actions-specific config
+    if (isGitHubActions) {
+        tag("GitHub Actions")
+        tag("${System.getenv("RUNNER_OS")}-${System.getenv("RUNNER_ARCH")}")
+
+        val actionRunRefName = System.getenv("GITHUB_REF_NAME")
+        value("Workflow run ref name", actionRunRefName)
+        value("Workflow run ref type", System.getenv("GITHUB_REF_TYPE"))
+
+        val repoUrl =
+            "${System.getenv("GITHUB_SERVER_URL")}/${System.getenv("GITHUB_REPOSITORY")}"
+
+        val commitSha = System.getenv("GITHUB_SHA")
+        link("View commit", "$repoUrl/commit/$commitSha")
+        link("View source at commit", "$repoUrl/tree/$commitSha")
+        link("View source at branch/tag", "$repoUrl/tree/$actionRunRefName")
+        value("Git commit SHA", commitSha)
+
+        val actionRunRef = System.getenv("GITHUB_REF")
+        val prNumber = Regex("""refs/pull/(\d+)/merge""")
+            .find(actionRunRef)?.groupValues?.first()
+        if (prNumber != null) {
+            tag("Pull Request")
+            link("View pull request", "$repoUrl/pull/$prNumber")
+            value("GitHub pull request number", prNumber)
+        }
+        val tagName = Regex("""refs/tags/(.+)""")
+            .find(actionRunRef)?.groupValues?.first()
+        if (tagName != null) {
+            tag("Release")
+            link("View tag", "$repoUrl/releases/tag/$tagName")
+        }
+
+        val actionRunId = System.getenv("GITHUB_RUN_ID")
+        link("View workflow run", "$repoUrl/actions/runs/$actionRunId")
+        value("Workflow run attempts", System.getenv("GITHUB_RUN_ATTEMPT"))
+        value("Workflow run ID", actionRunId)
+        value("Workflow run number", System.getenv("GITHUB_RUN_NUMBER"))
+    }
+}
+
+android {
+    buildToolsVersion = "37.0.0"
+    compileSdk = 37
+    minSdk = 23
+}
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+include(
+    ":ui:common",
+    ":ui:design-system",
+    ":ui:insets",
+    ":ui:preference:compose",
+    ":ui:theming:common",
+    ":ui:theming:compose",
+    ":ui:theming:views",
+    ":ui:widgets:compose",
+    ":ui:widgets:views",
+    ":ui:widgets:views:markdown-viewer",
+    ":ui:widgets:compose:markdown-viewer",
+    ":ui:widgets:compose:navigation",
+    ":ui:widgets:compose:option-bottom-sheet",
+    ":ui:widgets:compose:segmented-list",
+    ":ui:widgets:modal-bottom-sheet",
+    ":core:auth:model",
+    ":core:auth:ui:common",
+    ":core:auth:ui:compose",
+    ":core:auth:credentials",
+    ":core:auth:gms",
+    ":core:auth:service",
+    ":core:compat:navigation",
+    ":core:deeplink",
+    ":core:di",
+    ":core:resources",
+    ":core:resources:icons:common",
+    ":core:resources:icons",
+    ":core:resources:icons:animated",
+    ":core:resources:metadata",
+    ":core:resources:temporal",
+    ":core:settings:appearance:datastore",
+    ":core:settings:appearance:datastore-proto",
+    ":core:settings:appearance:model",
+    ":core:settings:appearance:resources",
+    ":core:settings:general:datastore",
+    ":core:settings:general:datastore-proto",
+    ":core:settings:general:model",
+    ":core:settings:general:resources",
+    ":core:settings:tasks:datastore",
+    ":core:settings:tasks:datastore-proto",
+    ":core:settings:tasks:model",
+    ":core:settings:tasks:resources",
+    ":core:settings:tracking",
+    ":core:settings:updates:datastore",
+    ":core:settings:updates:datastore-proto",
+    ":core:settings:updates:model",
+    ":core:settings:updates:resources",
+    ":core:updater",
+    ":data:common",
+    ":data:common:compose",
+    ":data:common:protobuf",
+    ":data:forms:compose",
+    ":data:paging:firestore",
+    ":data:serialization:android",
+    ":utils:android",
+    ":utils:androidx:compose",
+    ":utils:androidx:core",
+    ":utils:coil:compose",
+    ":utils:coroutines",
+    ":utils:dev-mode",
+    ":utils:network",
+    ":utils:recyclerview",
+    ":utils:web",
+    ":utils:web:navigation",
+    ":utils:wire:datastore",
+    ":exts:android",
+    ":exts:android:metadata",
+    ":exts:androidx:fragment",
+    ":exts:androidx:lifecycle:view-model",
+    ":exts:androidx:navigation-runtime",
+    ":exts:androidx:preference",
+    ":exts:androidx:preference-files",
+    ":exts:androidx:view-binding",
+    ":exts:coil",
+    ":exts:common",
+    ":exts:datetime",
+    ":exts:firebase:core",
+    ":exts:firebase:temporal",
+    ":exts:material",
+    ":exts:material:date-picker",
+    ":features:about",
+    ":features:auth",
+    ":features:auth:navigation",
+    ":features:help",
+    ":features:settings",
+    ":features:tasks",
+    ":features:tasks:data",
+    ":features:tasks:domain",
+    ":features:tasks:domain-proto",
+    ":features:tasks:navigation",
+    ":app"
+)

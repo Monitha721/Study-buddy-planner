@@ -1,0 +1,47 @@
+# All iml files
+*.iml
+
+# Gradle file
+.gradle
+
+# Local configuration
+/local.properties
+*/local.properties
+
+# Android Studio
+/.idea/workspace.xml
+.idea/*
+
+# macOS files
+.DS_Store
+
+# Android builds
+/build
+*/build
+**/build
+/captures
+.externalNativeBuild
+
+# Ignore the Google Services config file (This should have been done WAY earlier... Oops)
+# EDIT: This can be added to any public opensource repos (it can even be accessed if someone
+# extracts the APK)
+#google-services.json
+
+# Node modules
+node_modules
+.gitsecret/keys/random_seed
+!*.secret
+
+# Keys for building releases of the app
+# *.jks
+
+# Secret keys
+secret_keys.properties
+secret-config.toml
+
+# Exclude outputted gradle-profiler contents
+gradle-user-home
+profile-out*
+
+# Generated Kotlin output (2.0.0+)
+.kotlin

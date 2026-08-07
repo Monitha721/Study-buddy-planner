@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This file contains strings that can be reused across all modules. -->
+<resources>
+    <!-- The application's name. -->
+    <string name="app_name">StudyBuddy</string>
+
+    <!-- Content description for the application's logo. -->
+    <string name="app_logo_content_desc">StudyBuddy icon</string>
+
+    <!-- Dialog strings -->
+    <eat-comment />
+
+    <!-- Text for a cancel button in a dialog. -->
+    <string name="dialog_action_cancel">@android:string/cancel</string>
+
+    <!-- Text for a dismiss button in a dialog. -->
+    <string name="dialog_action_dismiss">Dismiss</string>
+
+    <!-- Text for a done button in a dialog. -->
+    <string name="dialog_action_done">Done</string>
+
+    <!-- Text for an okay button in a dialog. -->
+    <string name="dialog_action_ok">@android:string/ok</string>
+
+    <!-- Text for a retry button in a dialog. -->
+    <string name="dialog_action_retry">Retry</string>
+
+    <!-- Menu strings -->
+    <eat-comment />
+
+    <!-- The title of the debug menu item. -->
+    <string name="menu_debug_title">Debug</string>
+    <!-- The title of the help menu item. -->
+    <string name="menu_help_title">Help</string>
+    <!-- The title of the settings menu item. -->
+    <string name="menu_settings_title">Settings</string>
+
+    <!-- Formatting strings -->
+    <eat-comment />
+
+    <!-- Denotes the application-default java.time pattern format. -->
+    <string name="java_time_format_pattern_default" formatted="false">EEE, MMM d yyyy</string>
+</resources>

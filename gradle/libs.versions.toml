@@ -1,0 +1,262 @@
+[versions]
+aboutLibraries = "15.0.4"
+accompanist = "0.37.3"
+android-compose-screenshotTest = "0.0.1-alpha15"
+android-desugar = "2.1.5"
+android-gradle = "9.3.1"
+androidx-activity = "1.13.0"
+androidx-compose = "1.12.0-beta02"
+androidx-compose-material3 = "1.5.0-alpha24"
+androidx-compose-material3-adaptive = "1.3.0-rc01"
+androidx-credentials = "1.6.0"
+androidx-datastore = "1.2.1"
+androidx-fragment = "1.9.0-alpha02"
+androidx-lifecycle = "2.11.0"
+androidx-navigation = "2.9.8"
+androidx-paging = "3.5.0"
+coil = "3.5.0"
+dagger = "2.60.1"
+deep-link-dispatch = "7.2.2"
+firebase-bom = "34.16.0"
+gradle-versions = "0.56.0"
+hilt = "1.4.0"
+kotest = "6.2.3"
+kotlin = "2.4.10"
+kotlinx-coroutines = "1.11.0"
+kotlinx-serialization = "1.11.0"
+ktoml = "0.7.1"
+ktor = "3.5.1"
+mockk = "1.14.11"
+wire = "6.4.5"
+
+[libraries]
+# AndroidX dependencies
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
+androidx-annotation = "androidx.annotation:annotation:1.10.0"
+androidx-appcompat = "androidx.appcompat:appcompat:1.7.1"
+androidx-browser = "androidx.browser:browser:1.10.0"
+androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.2.1"
+androidx-core-ktx = "androidx.core:core-ktx:1.19.0"
+androidx-datastore-typed = { module = "androidx.datastore:datastore", version.ref = "androidx-datastore" }
+androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "androidx-fragment" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-fragment-testing = { module = "androidx.fragment:fragment-testing", version.ref = "androidx-fragment" }
+androidx-fragment-testing-manifest = { module = "androidx.fragment:fragment-testing-manifest", version.ref = "androidx-fragment" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-testing = { module = "androidx.lifecycle:lifecycle-viewmodel-testing", version.ref = "androidx-lifecycle" }
+# KTX artifacts have merged back into the main artifact, but the ktx suffix is still kept for compatibility
+androidx-navigation-common-ktx = { module = "androidx.navigation:navigation-common", version.ref = "androidx-navigation" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment", version.ref = "androidx-navigation" }
+androidx-navigation-runtime-ktx = { module = "androidx.navigation:navigation-runtime", version.ref = "androidx-navigation" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui", version.ref = "androidx-navigation" }
+androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "androidx-paging" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidx-paging" }
+androidx-preference-ktx = "androidx.preference:preference-ktx:1.2.1"
+androidx-recyclerview-core = "androidx.recyclerview:recyclerview:1.4.0"
+androidx-recyclerview-selection = "androidx.recyclerview:recyclerview-selection:1.2.0"
+androidx-savedstate-ktx = "androidx.savedstate:savedstate-ktx:1.5.0"
+androidx-swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0"
+androidx-work-runtime-ktx = "androidx.work:work-runtime-ktx:2.11.2"
+
+# Jetpack Compose
+androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "androidx-compose" }
+androidx-compose-animation-graphics = { module = "androidx.compose.animation:animation-graphics", version.ref = "androidx-compose" }
+androidx-compose-material-icons-core = "androidx.compose.material:material-icons-core:1.7.8"
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "androidx-compose-material3" }
+androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "androidx-compose-material3-adaptive" }
+androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout", version.ref = "androidx-compose-material3-adaptive" }
+androidx-compose-material3-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "androidx-compose-material3-adaptive" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "androidx-compose" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-compose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+
+androidxtra-browser-ktx = "io.github.edricchan03.androidx.browser:browser-ktx:0.2.0"
+androidxtra-recyclerview-ktx = "io.github.edricchan03.androidx.recyclerview:recyclerview-ktx:0.2.0"
+
+# Accompanist
+accompanist-drawablePainter = { module = "com.google.accompanist:accompanist-drawablepainter", version.ref = "accompanist" }
+
+# Other Compose dependencies
+composeMarkdown = "io.github.boswelja.markdown:material3:1.3.0"
+composeShimmer = "com.valentinilk.shimmer:compose-shimmer:1.5.0"
+
+# Other dependencies
+
+materialComponents = "com.google.android.material:material:1.14.0"
+
+# Credential Manager
+androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "androidx-credentials" }
+androidx-credentials-playServices = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "androidx-credentials" }
+google-identity-googleId = "com.google.android.libraries.identity.googleid:googleid:1.2.0"
+
+# DeepLinkDispatcher
+deepLinkDispatch-core = { module = "com.airbnb:deeplinkdispatch", version.ref = "deep-link-dispatch" }
+deepLinkDispatch-processor = { module = "com.airbnb:deeplinkdispatch-processor", version.ref = "deep-link-dispatch" }
+
+# Firebase
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+# KTX artifacts have been merged into the main artifacts from Firebase BoM 32.4.0+
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics" }
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth" }
+playServices-auth = "com.google.android.gms:play-services-auth:21.6.0"
+firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore" }
+firebase-installations-ktx = { module = "com.google.firebase:firebase-installations" }
+firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging" }
+firebase-perf-ktx = { module = "com.google.firebase:firebase-perf" }
+
+# Kotlin
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinx-coroutines" }
+kotlinx-metadata-jvm = { module = "org.jetbrains.kotlin:kotlin-metadata-jvm", version.ref = "kotlin" }
+
+# I/O Dependencies
+
+# Coil
+coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-zoomable = "me.saket.telephoto:zoomable-image-coil3:0.19.0"
+
+# Ktor
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# kotlinx-serialization
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+ktoml-core = { module = "com.akuleshov7:ktoml-core", version.ref = "ktoml" }
+ktoml-file = { module = "com.akuleshov7:ktoml-file", version.ref = "ktoml" }
+
+# Miscellaneous
+
+materialAbout = "com.github.daniel-stoneuk:material-about-library:3.2.0-rc01"
+aboutLibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutLibraries" }
+aboutLibraries-compose-material3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+# TODO: Switch to an in-house updater
+appUpdater = "com.github.AleP04:AppUpdater:2.7.2"
+flowPreferences = "com.fredporciuncula:flow-preferences:1.9.1"
+migration = "io.github.boswelja.migration:migration-core:2.1.4"
+semver = "io.github.z4kn4fein:semver:3.1.0"
+
+# Gradle Versions (declared here as a library and not as a plugin
+# such that it can be used in a custom reporter)
+gradleVersions-gradle = { module = "io.github.ben-manes:gradle-versions-plugin", version.ref = "gradle-versions" }
+
+# AGP (as a library such that it can be used in precompiled scripts)
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "android-gradle" }
+
+# Kotlin Gradle plugin
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-composeCompiler-gradle = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+
+# Testing dependencies
+androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.7.0"
+androidx-test-core = "androidx.test:core:1.7.0"
+androidx-test-core-ktx = "androidx.test:core-ktx:1.7.0"
+androidx-test-ext-junit = "androidx.test.ext:junit:1.3.0"
+androidx-test-ext-junit-ktx = "androidx.test.ext:junit-ktx:1.3.0"
+androidx-test-runner = "androidx.test:runner:1.7.0"
+androidx-test-rules = "androidx.test:rules:1.7.0"
+junit = "junit:junit:4.13.2"
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+mockk-core = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
+
+kotest-assertion-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+
+# Compose screenshot testing dependencies
+android-screenshot-validation-api = { module = "com.android.tools.screenshot:screenshot-validation-api", version.ref = "android-compose-screenshotTest" }
+
+# DI dependencies
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt" }
+androidx-hilt-lifecycle-viewmodel-compose = { module = "androidx.hilt:hilt-lifecycle-viewmodel-compose", version.ref = "hilt" }
+androidx-hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt" }
+dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
+dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
+
+android-desugar = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-desugar" }
+android-desugar-nio = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "android-desugar" }
+
+# Protobuf dependencies
+wire-runtime = { module = "com.squareup.wire:wire-runtime", version.ref = "wire" }
+
+[bundles]
+androidx-compose = [
+  "androidx-compose-animation",
+  "androidx-compose-foundation",
+  "androidx-compose-ui",
+  "androidx-compose-ui-tooling-preview",
+  "androidx-compose-material3",
+  "androidx-compose-material-icons-core"
+]
+
+androidx-compose-tooling = [
+  "androidx-compose-ui-test-manifest",
+  "androidx-compose-ui-tooling"
+]
+
+androidx-test = [
+  "androidx-test-espresso-core",
+  "androidx-test-core",
+  "androidx-test-runner",
+  "androidx-test-rules"
+]
+
+firebase = [
+  "firebase-analytics-ktx",
+  "firebase-auth-ktx",
+  "playServices-auth",
+  "firebase-crashlytics-ktx",
+  "firebase-firestore-ktx",
+  "firebase-installations-ktx",
+  "firebase-messaging-ktx",
+  "firebase-perf-ktx"
+]
+
+ktor = [
+  "ktor-client-core",
+  "ktor-client-content-negotiation",
+  "ktor-client-okhttp",
+  "ktor-serialization-kotlinx-json"
+]
+
+[plugins]
+android-gradle-application = { id = "com.android.application", version.ref = "android-gradle" }
+android-gradle-library = { id = "com.android.library", version.ref = "android-gradle" }
+android-compose-screenshotTest = { id = "com.android.compose.screenshot", version.ref = "android-compose-screenshotTest" }
+
+kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+ksp = "com.google.devtools.ksp:2.3.10"
+
+firebase-crashlytics = "com.google.firebase.crashlytics:3.0.7"
+firebase-perf = "com.google.firebase.firebase-perf:2.0.2"
+googleServices = "com.google.gms.google-services:4.5.0"
+
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
+
+wire = { id = "com.squareup.wire", version.ref = "wire" }
+
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin.android", version.ref = "aboutLibraries" }
+
+dependencyAnalysis = "com.autonomousapps.dependency-analysis:3.17.0"
+
+testAggregation-results = "io.github.gmazzo.test.aggregation.results:2.5.1"
